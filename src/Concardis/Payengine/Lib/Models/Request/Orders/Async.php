@@ -22,6 +22,17 @@ class Async extends AbstractModel
     private $cancelUrl;
 
     /**
+     * @var string
+     */
+    private $notifyUrl;
+
+    /**
+     * @var string
+     */
+    private $returnUrl;
+
+
+    /**
      * @return string
      */
     public function getSuccessUrl()
@@ -67,6 +78,38 @@ class Async extends AbstractModel
     public function setCancelUrl($cancelUrl)
     {
         $this->cancelUrl = $cancelUrl;
+    }
+    
+     /**
+     * @return string
+     */
+    public function getNotifyUrl()
+    {
+        return $this->notifyUrl;
+    }
+
+    /**
+     * @param string $notificationUrl
+     */
+    public function setNotifyUrl($notifyUrl)
+    {
+        $this->notifyUrl = $notifyUrl;
+    }
+
+         /**
+     * @return string
+     */
+    public function getReturnUrl()
+    {
+        return $this->returnUrl;
+    }
+
+    /**
+     * @param string $returnUrl
+     */
+    public function setReturnUrl($returnUrl)
+    {
+        $this->returnUrl = $returnUrl;
     }
 
 }

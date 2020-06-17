@@ -4,9 +4,14 @@ namespace Concardis\Payengine\Lib\Models\Request\Orders\Payment;
 
 
 use Concardis\Payengine\Lib\Internal\AbstractClass\AbstractModel;
+use Concardis\Payengine\Lib\Models\Request\Orders\Payment\CofContract;
 
 class Payment extends AbstractModel
 {
+    // protected $subModels = array(
+    //     'cofContract' => CofContract::class
+    // );
+
     /**
      * @var string
      */
@@ -93,6 +98,14 @@ class Payment extends AbstractModel
      * @var string
      */
     private $expiryMonth;
+
+
+    private $cofContract;
+
+    /**
+     * @var bool
+     */
+    private $createRecurringBillingAgreement;
 
     /**
      * @return string
@@ -514,4 +527,38 @@ class Payment extends AbstractModel
         $this->setMandate($mandate);
         $this->setPaymentInstrumentId($paymentInstrumentId);
     }
+
+
+    /**
+     * @return var
+     */
+    public function getCofContract()
+    {
+        return $this->cofContract;
+    }
+    /**
+     * @param array $transactionData
+     */
+    public function setCofContract($cofContract)
+    {
+        $this->cofContract = $cofContract;
+    }
+
+        /**
+     * @return bool
+     */
+    public function getCreateRecurringBillingAgreement()
+    {
+        return $this->createRecurringBillingAgreement;
+    }
+    /**
+     * @param  bool $createRecurringBillingAgreement
+     */
+    public function setCreateRecurringBillingAgreement($createRecurringBillingAgreement)
+    {
+        $this->createRecurringBillingAgreement = $createRecurringBillingAgreement;
+    }
+
+
+
 }
