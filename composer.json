@@ -1,5 +1,5 @@
 {
-  "name": "payengine/php_sdk",
+  "name": "finkbeiner/php_sdk_forked",
   "type":"Library",
   "description": "PHP Library for Concardis PayEngine 3.0",
   "keywords":["concardis", "payengine", "payment", "provider", "service", "ecommerce"],
