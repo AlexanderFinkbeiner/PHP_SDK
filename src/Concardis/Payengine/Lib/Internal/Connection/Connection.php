@@ -84,8 +84,7 @@ class Connection implements ConnectionInterface
         $this->setDefaultHeader();
         $resourceEndpoint = $this->getEndpoint() . $path;
         $payload = json_encode($payload);
-        // print_r($payload);
-        // file_put_contents(TL_ROOT ."/var/logs/post.log", "post(): ". print_r($payload,true) ."\r\n", FILE_APPEND | LOCK_EX);
+        // file_put_contents(TL_ROOT ."/var/logs/post.log", "post(" . $path ."): ". print_r($payload,true) ."\r\n", FILE_APPEND | LOCK_EX);
         $this->curl->post($resourceEndpoint, $payload);
 
         if(!$this->curl->isSuccess()) {
