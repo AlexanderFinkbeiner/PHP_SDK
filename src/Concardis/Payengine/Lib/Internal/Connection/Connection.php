@@ -164,7 +164,7 @@ class Connection implements ConnectionInterface
     public function get($path, $queryParams = array())
     {
         $url = $this->getEndpoint() . $path;
-        if(count($queryParams) > 0){
+        if(is_countable($queryParams) && count($queryParams) > 0){
             $url .= '?'.http_build_query($queryParams);
         }
 

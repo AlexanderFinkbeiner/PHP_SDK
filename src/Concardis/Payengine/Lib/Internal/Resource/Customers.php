@@ -53,7 +53,7 @@ class Customers extends AbstractResource implements Postable, Patchable, Getable
      * A list of Customers if $queryParams provided or one Customer 
      * if called with ID set, if customerId is set $queryParams will be ignored.
      */
-    public function get($queryParams = null)
+    public function get($queryParams = array())
     {
         return parent::get($queryParams);
     }
