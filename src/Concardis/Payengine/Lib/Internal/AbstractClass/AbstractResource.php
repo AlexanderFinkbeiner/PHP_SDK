@@ -70,13 +70,10 @@ abstract class AbstractResource
             $result = $this->connection->post($this->resourcePath, $data);
 
         } catch (PayengineResourceException $e) {
-            print("<pre>".print_r($e->getResponseHeader(),true)."</pre>");
-            print("<pre>".print_r($e->getResponseBody(),true)."</pre>");
-            print("<pre>".print_r($e->getPayload(),true)."</pre>");
             throw $e;
         }
         catch (Exception $e) {
-            print("<pre>".print_r($e,true)."</pre>");
+            throw $e;
         }
        
         if($result != null) {
