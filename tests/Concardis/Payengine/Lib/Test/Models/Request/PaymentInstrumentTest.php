@@ -11,10 +11,7 @@ use \PHPUnit\Framework\TestCase;
 class PaymentInstrumentTest extends TestCase
 {
 
-    /**
-     * @test
-     */
-    public function toArray_filterEmptyStrings() {
+public function toArray_filterEmptyStrings() {
         $expected = array(
             'product' => Products::PAYPAL
         );
@@ -29,10 +26,7 @@ class PaymentInstrumentTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
-    public function toArray_creditCard() {
+public function toArray_creditCard() {
         $expected = array(
             'product' => Products::CREDITCARD,
             'cardHolder' => 'Max Mustermann',
@@ -57,9 +51,6 @@ class PaymentInstrumentTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray_Sepa() {
         $expected = array(
             'product' => Products::SEPA,

@@ -11,22 +11,15 @@ use PHPUnit\Framework\TestCase;
 
 class TransactionTest extends TestCase
 {
+    private Transaction $testedClass;
 
-    /**
-     * @var Transaction
-     */
-    private $testedClass;
-
-    public function setUp()
+    public function setUp(): void
     {
         $this->testedClass = TransactionFixture::getResponseChild();
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
-    public function toArrayTest_WithOrderAsId(){
+    public function testToArrayTest_WithOrderAsId(){
         $modelToArray = $this->testedClass->__toArray();
         $this->assertArrayHasKey('description', $modelToArray);
         $this->assertArrayHasKey('type', $modelToArray);
@@ -42,10 +35,7 @@ class TransactionTest extends TestCase
 
     }
 
-    /**
-     * @test
-     */
-    public function fromArrayTest_WithOrderAsArray(){
+    public function testFromArrayTest_WithOrderAsArray(){
         $transaction = $this->testedClass;
         $orderAsArray = OrderFixture::getResponse()->__toArray();
         $transaction->setOrder($orderAsArray);
@@ -62,7 +52,7 @@ class TransactionTest extends TestCase
         $this->assertArrayHasKey('refundedAmount', $responseFromMiddleware);
         $this->assertArrayHasKey('capturedAmount', $responseFromMiddleware);
         $this->assertArrayHasKey('initialAmount', $responseFromMiddleware);
-        $this->assertInternalType('array', $responseFromMiddleware['order']);
+        $this->assertEquals('array', gettype($responseFromMiddleware['order']));
 
         $transactionFromResponse = new Transaction();
         $transactionFromResponse->__fromArray($responseFromMiddleware);
@@ -70,10 +60,7 @@ class TransactionTest extends TestCase
         $this->assertInstanceOf('Concardis\Payengine\Lib\Models\Response\Order', $transactionFromResponse->getOrder());
     }
 
-    /**
-     * @test
-     */
-    public function fromArrayTest_WithOrderAsArray_TransactionAsId(){
+    public function testFromArrayTest_WithOrderAsArray_TransactionAsId(){
         $transaction = $this->testedClass;
         $order = OrderFixture::getResponse();
         $order->setTransactions(array('transaction_1234567890'));
@@ -92,7 +79,7 @@ class TransactionTest extends TestCase
         $this->assertArrayHasKey('refundedAmount', $responseFromMiddleware);
         $this->assertArrayHasKey('capturedAmount', $responseFromMiddleware);
         $this->assertArrayHasKey('initialAmount', $responseFromMiddleware);
-        $this->assertInternalType('array', $responseFromMiddleware['order']);
+        $this->assertEquals('array', gettype($responseFromMiddleware['order']));
 
         $transactionFromResponse = new Transaction();
         $transactionFromResponse->__fromArray($responseFromMiddleware);

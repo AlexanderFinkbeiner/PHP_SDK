@@ -9,9 +9,6 @@ use \PHPUnit\Framework\TestCase;
 
 class RatepayDirectdebitPaymentTest extends TestCase
 {
-    /**
-     * @test
-     */
     public function toArray() {
         $ratepayDirectdebitPayment = new Payment();
         $ratepayDirectdebitPayment->setRiskIdentId('riskidentid');
@@ -40,9 +37,6 @@ class RatepayDirectdebitPaymentTest extends TestCase
         $this->assertEquals($expected, $actualSetter);
     }
 
-    /**
-     * @test
-     */
     public function toArrayWithPaymentInstrument() {
         $ratepayDirectdebitPayment = new Payment();
         $ratepayDirectdebitPayment->setRiskIdentId('riskidentid');

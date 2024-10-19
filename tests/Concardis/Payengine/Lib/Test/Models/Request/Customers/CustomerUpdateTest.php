@@ -10,9 +10,6 @@ use \PHPUnit\Framework\TestCase;
 class CustomerUpdateTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $customerUpdate = new CustomerUpdate();
         $customerUpdate->setMerchantCustomerId('');
@@ -22,9 +19,6 @@ class CustomerUpdateTest extends TestCase
         $this->assertEquals(array(), $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $expected = array(
             'merchantCustomerId' => '123'

@@ -6,6 +6,7 @@ require_once __DIR__ . "/../../../../../../autoload.php";
 use Concardis\Payengine\Lib\Test\Fixture\Model\PaymentInstrumentFixture;
 use Concardis\Payengine\Lib\Models\Response\PaymentInstrument;
 use Concardis\Payengine\Lib\Test\Fixture\Model\AuthorizingTransactionFixture;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,15 +21,12 @@ class AbstractModelTest extends TestCase
      */
     private $testedClass;
 
-    public function setUp()
+    public function setUp() :void
     {
         $this->testedClass = PaymentInstrumentFixture::getResponse();
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
     public function toArrayTest() {
         $modelToArray = $this->testedClass->__toArray();
 
@@ -46,9 +44,6 @@ class AbstractModelTest extends TestCase
         $this->assertEquals($this->testedClass->getAttributes(), $modelToArray['attributes']);
     }
 
-    /**
-     * @test
-     */
     public function authorizingTransactionToArray() {
         $request = AuthorizingTransactionFixture::getRequest();
         $actual = $request->__toArray();
@@ -67,9 +62,6 @@ class AbstractModelTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function emptyObjectTest() {
         $request = AuthorizingTransactionFixture::getRequest();
         $request->setAsync(null);
@@ -84,9 +76,6 @@ class AbstractModelTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toJsonTest() {
         $modelToArray = $this->testedClass->__toArray();
         $modelToJson = $this->testedClass->__toJson();
@@ -94,9 +83,6 @@ class AbstractModelTest extends TestCase
         $this->assertEquals(json_encode($modelToArray), $modelToJson);
     }
 
-    /**
-     * @test
-     */
     public function fromArrayTest() {
         $expectedModel = $this->testedClass;
 
@@ -109,9 +95,6 @@ class AbstractModelTest extends TestCase
         $this->assertEquals($expectedModel, $actualModel);
     }
 
-    /**
-     * @test
-     */
     public function fromJsonTest() {
         $expectedModel = $this->testedClass;
 

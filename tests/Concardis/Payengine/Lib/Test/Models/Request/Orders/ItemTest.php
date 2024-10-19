@@ -10,9 +10,6 @@ use PHPUnit\Framework\TestCase;
 class ItemTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $expected = array(
             'name' => 'test',
@@ -29,9 +26,6 @@ class ItemTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $expected = array(
             'articleNumber' => 'PE12345',

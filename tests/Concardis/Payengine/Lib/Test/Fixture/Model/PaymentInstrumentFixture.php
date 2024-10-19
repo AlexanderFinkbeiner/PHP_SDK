@@ -6,6 +6,7 @@ namespace Concardis\Payengine\Lib\Test\Fixture\Model;
 use Concardis\Payengine\Lib\Internal\Constants\Products;
 use Concardis\Payengine\Lib\Models\Response\PaymentInstrument as ResponseModel;
 use Concardis\Payengine\Lib\Models\Request\PaymentInstrument as RequestModel;
+use Concardis\Payengine\Lib\Models\Response\PaymentInstruments\Attributes;
 
 class PaymentInstrumentFixture
 {

@@ -23,7 +23,7 @@ class TransactionsTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -40,17 +40,11 @@ class TransactionsTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function patchTest(){
         $result = $this->payengine->orders('test123')->transactions()->patch(array());
         $this->assertEquals(TransactionFixture::getResponseParent(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getOneTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -66,9 +60,6 @@ class TransactionsTest extends TestCase
         $this->assertEquals(TransactionFixture::getResponseParent(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getAllTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')

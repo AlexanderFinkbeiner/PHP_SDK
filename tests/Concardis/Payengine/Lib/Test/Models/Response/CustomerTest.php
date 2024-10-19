@@ -18,21 +18,15 @@ use PHPUnit\Framework\TestCase;
 class CustomerTest extends TestCase
 {
 
-    /**
-     * @var Customer
-     */
-    private $testedClass;
+    private Customer $testedClass;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->testedClass = CustomerFixture::getResponse();
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
-    public function toArrayTest(){
+    public function testToArray(){
         $modelToArray = $this->testedClass->__toArray();
 
         $this->assertTrue(is_array($modelToArray));
@@ -144,20 +138,14 @@ class CustomerTest extends TestCase
         $this->assertEquals($persona->getGender(), $modelToArray['personas'][0]['gender']);
     }
 
-    /**
-     * @test
-     */
-    public function toJsonTest(){
+    public function testToJsonTest(){
         $modelToArray = $this->testedClass->__toArray();
         $modelToJson = $this->testedClass->__toJson();
 
         $this->assertEquals(json_encode($modelToArray), $modelToJson);
     }
 
-    /**
-     * @test
-     */
-    public function fromArrayTest(){
+    public function testFromArrayTest(){
         $expectedModel = $this->testedClass;
 
         $jsonString = $this->testedClass->__toJson();
@@ -169,10 +157,7 @@ class CustomerTest extends TestCase
         $this->assertEquals($expectedModel, $actualModel);
     }
 
-    /**
-     * @test
-     */
-    public function fromJsonTest(){
+    public function testFromJsonTest(){
         $expectedModel = $this->testedClass;
 
         $jsonString = $this->testedClass->__toJson();

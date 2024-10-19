@@ -8,6 +8,8 @@ use Concardis\Payengine\Lib\Internal\Connection\Connection;
 use Concardis\Payengine\Lib\Models\Response\ListWrapper;
 use Concardis\Payengine\Lib\PayEngine;
 use Concardis\Payengine\Lib\Test\Fixture\Model\AddressFixture;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -21,38 +23,31 @@ class AddressesTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
 
-    /**
-     * @return \PHPUnit_Framework_MockObject_MockObject
-     */
-    protected function getConnectionMock(){
+    protected function getConnectionMock() : Connection| MockObject
+    {
         $mock = $this->createMock(Connection::class);
 
         $mock->method('post')
-            ->will($this->returnValue(AddressFixture::getResponse()->__toArray()));
+            ->willReturn(AddressFixture::getResponse()->__toArray());
         return $mock;
     }
 
-    /**
-     * @test
-     */
-    public function postTest(){
+    public function testPostTest(){
         $result = $this->payengine->customer('test123')->addresses()->post(array());
         $this->assertEquals(AddressFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
-    public function getOneTest(){
+
+    public function testGetOneTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
             ->with('/customers/test123/addresses/foobar123')
-            ->will($this->returnValue(AddressFixture::getResponse()->__toArray()));
+            ->willReturn(AddressFixture::getResponse()->__toArray());
         $this->payengine->setConnection($mock);
 
         $result = $this->payengine->customer('test123')->addresses('foobar123')->get();
@@ -61,21 +56,18 @@ class AddressesTest extends TestCase
         $this->assertEquals(AddressFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
-    public function getAllTest(){
+    public function testGetAllTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
             ->with('/customers/test123/addresses')
-            ->will($this->returnValue(
+            ->willReturn(
                 array(
                     'totalPages' => 2,
                     'elements' => array(
                         AddressFixture::getResponse()->__toArray(),
                         AddressFixture::getResponse()->__toArray()
                     )
-                )
+                
         ));
         $this->payengine->setConnection($mock);
 

@@ -19,18 +19,12 @@ use PHPUnit\Framework\TestCase;
 class PayengineTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function createInstance_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);
         self::assertTrue(is_a($payEngine, PayEngine::class));
     }
 
-    /**
-     * @test
-     */
     public function setConfig_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);
@@ -38,9 +32,6 @@ class PayengineTest extends TestCase
         $payEngine->setConfiguration($config);
     }
 
-    /**
-     * @test
-     */
     public function setConnection_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);
@@ -48,26 +39,17 @@ class PayengineTest extends TestCase
         $payEngine->setConnection(new Connection());
     }
 
-    /**
-     * @test
-     */
     public function getResourceCustomers_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);
         $this->assertTrue(is_a($payEngine->customer(), Customers::class));
     }
 
-    /**
-     * @test
-     */
     public function getResourceOrders_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);
         $this->assertTrue(is_a($payEngine->orders(), Orders::class));
     }
-    /**
-     * @test
-     */
     public function getResourcePaymentInstruments_should_succeed(){
         $config = new MerchantConfiguration();
         $payEngine = new PayEngine($config);

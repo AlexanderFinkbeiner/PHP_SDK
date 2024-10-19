@@ -11,12 +11,12 @@ class ThreeDsData extends AbstractModel
     /**
      * @var object
      */
-    private $threeDsAuthenticationId;
+    private object $threeDsAuthenticationId;
 
     /**
      * @param object $threeDsAuthenticationId
      */
-    public function setThreeDsAuthenticationId($threeDsAuthenticationId)
+    public function setThreeDsAuthenticationId(object $threeDsAuthenticationId): void
     {
         $this->threeDsAuthenticationId = $threeDsAuthenticationId;
     }
@@ -24,7 +24,7 @@ class ThreeDsData extends AbstractModel
     /**
      * @return object
      */
-    public function getThreeDsAuthenticationId()
+    public function getThreeDsAuthenticationId(): object
     {
         return $this->threeDsAuthenticationId;
     }

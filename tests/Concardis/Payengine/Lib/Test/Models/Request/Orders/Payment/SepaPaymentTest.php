@@ -10,10 +10,7 @@ use \PHPUnit\Framework\TestCase;
 
 class SepaPaymentTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function toArray() {
+    public function testToArray() {
         $sepaPayment = new Payment();
         $sepaPayment->setAccountHolder('accountholder');
         $sepaPayment->setBankName('bankname');
@@ -47,10 +44,7 @@ class SepaPaymentTest extends TestCase
         $this->assertEquals($expected, $actualSetter);
     }
 
-    /**
-     * @test
-     */
-    public function toArrayWithPaymentInstrument() {
+    public function testToArrayWithPaymentInstrument() {
         $sepaPayment = new Payment();
         $sepaPayment->setPaymentInstrumentId('paymentinstrumentid');
 

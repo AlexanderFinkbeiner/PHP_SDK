@@ -5,14 +5,12 @@ namespace Concardis\Payengine\Lib\Test\Models\Request\Customers;
 require_once __DIR__ . "/../../../../../../../../autoload.php";
 
 use \Concardis\Payengine\Lib\Models\Request\Customers\Address;
+use PHPUnit\Framework\Attributes\Test;
 use \PHPUnit\Framework\TestCase;
 
 class AddressTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $expected = array(
             'firstName' => 'Max',
@@ -31,9 +29,6 @@ class AddressTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $expected = array(
             'title' => 'Dr.',

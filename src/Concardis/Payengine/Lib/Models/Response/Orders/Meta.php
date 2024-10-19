@@ -4,6 +4,8 @@ namespace Concardis\Payengine\Lib\Models\Response\Orders;
 
 
 use Concardis\Payengine\Lib\Internal\AbstractClass\AbstractResponseModel;
+use Concardis\Payengine\Lib\Models\Request\Orders\Payment\CofContract;
+use Concardis\Payengine\Lib\Models\Response\Orders\Metas\ThreeDsData;
 
 class Meta extends AbstractResponseModel
 {
@@ -12,78 +14,78 @@ class Meta extends AbstractResponseModel
      * @var string
      * relevant for RatePAY
      */
-    private $riskIdentId;
+    private string $riskIdentId;
 
     /**
      * @var integer
      * relevant for RatePAY Installment
      */
-    private $totalAmount;
+    private int $totalAmount;
 
     /**
      * @var integer
      * relevant for RatePAY Installment
      */
-    private $numberOfRates;
+    private int $numberOfRates;
 
     /**
      * @var integer
      * relevant for RatePAY Installment
      */
-    private $rate;
+    private int $rate;
 
     /**
      * @var integer
      * relevant for RatePAY Installment
      */
-    private $lastRate;
+    private int $lastRate;
 
     /**
      * @var float
      * relevant for RatePAY Installment
      */
-    private $interestRate;
+    private float $interestRate;
 
     /**
      * @var integer
      * relevant for RatePAY Installment
      */
-    private $paymentFirstDay;
+    private int $paymentFirstDay;
 
     /**
      * @var string
      * relevant for RatePAY Installment
      */
-    private $descriptor;
+    private string $descriptor;
 
     /**
      * @var string
      * relevant for creditcard payments
      */
-    private $threeDs;
+    private string $threeDs;
+
+    /**
+     * @var CofContract
+     * relevant for creditcard payments
+     */
+    private CofContract $cofContract;
 
     /**
      * @var string
      * relevant for creditcard payments
      */
-    private $cofContract;    
+    private string $flexibleThreeDS;
 
     /**
-     * @var string
+     * @var ThreeDsData
      * relevant for creditcard payments
      */
-    private $flexibleThreeDS;
-
-    /**
-     * @var object
-     * relevant for creditcard payments
-     */
-    private $threeDsData;
+    private ThreeDsData $threeDsData;
     
     /**
      * @return string
      */
-    public function getRiskIdentId()
+    public function getRiskIdentId(): string
     {
         return $this->riskIdentId;
     }
@@ -91,7 +93,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param string $riskIdentId
      */
-    public function setRiskIdentId($riskIdentId)
+    public function setRiskIdentId(string $riskIdentId): void
     {
         $this->riskIdentId = $riskIdentId;
     }
@@ -99,7 +101,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return int
      */
-    public function getTotalAmount()
+    public function getTotalAmount(): int
     {
         return $this->totalAmount;
     }
@@ -107,7 +109,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param int $totalAmount
      */
-    public function setTotalAmount($totalAmount)
+    public function setTotalAmount(int $totalAmount): void
     {
         $this->totalAmount = $totalAmount;
     }
@@ -115,7 +117,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return int
      */
-    public function getNumberOfRates()
+    public function getNumberOfRates(): int
     {
         return $this->numberOfRates;
     }
@@ -123,7 +125,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param int $numberOfRates
      */
-    public function setNumberOfRates($numberOfRates)
+    public function setNumberOfRates(int $numberOfRates): void
     {
         $this->numberOfRates = $numberOfRates;
     }
@@ -131,7 +133,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return int
      */
-    public function getRate()
+    public function getRate(): int
     {
         return $this->rate;
     }
@@ -139,7 +141,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param int $rate
      */
-    public function setRate($rate)
+    public function setRate(int $rate): void
     {
         $this->rate = $rate;
     }
@@ -147,7 +149,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return int
      */
-    public function getLastRate()
+    public function getLastRate(): int
     {
         return $this->lastRate;
     }
@@ -155,7 +157,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param int $lastRate
      */
-    public function setLastRate($lastRate)
+    public function setLastRate(int $lastRate): void
     {
         $this->lastRate = $lastRate;
     }
@@ -163,7 +165,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return float
      */
-    public function getInterestRate()
+    public function getInterestRate(): float
     {
         return $this->interestRate;
     }
@@ -171,7 +173,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param float $interestRate
      */
-    public function setInterestRate($interestRate)
+    public function setInterestRate(float $interestRate): void
     {
         $this->interestRate = $interestRate;
     }
@@ -179,7 +181,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return int
      */
-    public function getPaymentFirstDay()
+    public function getPaymentFirstDay(): int
     {
         return $this->paymentFirstDay;
     }
@@ -187,7 +189,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param int $paymentFirstDay
      */
-    public function setPaymentFirstDay($paymentFirstDay)
+    public function setPaymentFirstDay(int $paymentFirstDay): void
     {
         $this->paymentFirstDay = $paymentFirstDay;
     }
@@ -195,7 +197,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return string
      */
-    public function getDescriptor()
+    public function getDescriptor(): string
     {
         return $this->descriptor;
     }
@@ -203,7 +205,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param string $descriptor
      */
-    public function setDescriptor($descriptor)
+    public function setDescriptor(string $descriptor): void
     {
         $this->descriptor = $descriptor;
     }
@@ -212,7 +214,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return string
      */
-    public function getThreeDs()
+    public function getThreeDs(): string
     {
         return $this->threeDs;
     }
@@ -220,7 +222,7 @@ class Meta extends AbstractResponseModel
     /**
      * @param string $threeDs
      */
-    public function setThreeDs($threeDs)
+    public function setThreeDs(string $threeDs): void
     {
         $this->threeDs = $threeDs;
     }
@@ -229,7 +231,7 @@ class Meta extends AbstractResponseModel
     /**
      * @return string
      */
-    public function getFlexibleThreeDS()
+    public function getFlexibleThreeDS(): string
     {
         return $this->flexibleThreeDS;
     }
@@ -237,39 +239,39 @@ class Meta extends AbstractResponseModel
     /**
      * @param string $flexibleThreeDS
      */
-    public function setFlexibleThreeDS($flexibleThreeDS)
+    public function setFlexibleThreeDS(string $flexibleThreeDS): void
     {
         $this->flexibleThreeDS = $flexibleThreeDS;
     }
 
     /**
-     * @return object
+     * @return ThreeDsData
      */
-    public function getThreeDsData()
+    public function getThreeDsData(): ThreeDsData
     {
         return $this->threeDsData;
     }
 
     /**
-     * @param object $threeDsData
+     * @param ThreeDsData $threeDsData
      */
-    public function setThreeDsData($threeDsData)
+    public function setThreeDsData(ThreeDsData $threeDsData): void
     {
         $this->threeDsData = $threeDsData;
     }
 
         /**
-     * @return object
+     * @return CofContract
      */
-    public function getCofContract()
+    public function getCofContract(): CofContract
     {
         return $this->cofContract;
     }
 
     /**
-     * @param object $cofContract
+     * @param CofContract $cofContract
      */
-    public function setCofContract($cofContract)
+    public function setCofContract(CofContract $cofContract): void
     {
         $this->cofContract = $cofContract;
     }

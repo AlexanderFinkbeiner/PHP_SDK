@@ -21,7 +21,7 @@ class CustomerPaymentInstrumentsTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -41,25 +41,16 @@ class CustomerPaymentInstrumentsTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function postTest(){
         $result = $this->payengine->customer('test123')->paymentInstruments()->post(array());
         $this->assertEquals(PaymentInstrumentFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function deleteTest(){
         $result = $this->payengine->customer('test123')->paymentInstruments()->delete();
         $this->assertNull($result);
     }
 
-    /**
-     * @test
-     */
     public function getOneTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -75,9 +66,6 @@ class CustomerPaymentInstrumentsTest extends TestCase
         $this->assertEquals(PaymentInstrumentFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getAllTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')

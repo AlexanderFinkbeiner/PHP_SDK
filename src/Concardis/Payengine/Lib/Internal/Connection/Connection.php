@@ -1,11 +1,11 @@
 <?php
 namespace Concardis\Payengine\Lib\Internal\Connection;
 
-use \Curl\Curl;
+use Curl\Curl;
 
-use \Concardis\Payengine\Lib\Internal\Config\MerchantConfiguration;
-use \Concardis\Payengine\Lib\Internal\Constants\Api;
-use \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException;
+use Concardis\Payengine\Lib\Internal\Config\MerchantConfiguration;
+use Concardis\Payengine\Lib\Internal\Constants\Api;
+use Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException;
 
 class Connection implements ConnectionInterface
 {
@@ -76,7 +76,7 @@ class Connection implements ConnectionInterface
      * @param array $payload
      *
      * @return mixed
-     * @throws \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
+     * @throws PayengineResourceException
      */
     public function post($path, array $payload )
     {
@@ -110,7 +110,7 @@ class Connection implements ConnectionInterface
      * @param array $payload
      *
      * @return mixed
-     * @throws \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
+     * @throws PayengineResourceException
      */
     public function patch($path, array $payload)
     {
@@ -135,7 +135,7 @@ class Connection implements ConnectionInterface
      * @param       $path
      *
      * @return mixed
-     * @throws \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
+     * @throws PayengineResourceException
      */
     public function delete($path)
     {
@@ -159,7 +159,7 @@ class Connection implements ConnectionInterface
      * @param array $queryParams
      *
      * @return mixed
-     * @throws \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
+     * @throws PayengineResourceException
      */
     public function get($path, $queryParams = array())
     {

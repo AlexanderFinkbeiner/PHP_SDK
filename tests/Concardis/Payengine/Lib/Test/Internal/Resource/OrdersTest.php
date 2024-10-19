@@ -26,7 +26,7 @@ class OrdersTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -49,25 +49,16 @@ class OrdersTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function postTest(){
         $result = $this->payengine->orders()->post(array());
         $this->assertEquals(OrderFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function patchTest(){
         $result = $this->payengine->orders()->patch(array());
         $this->assertEquals(OrderFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getOneTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -83,9 +74,6 @@ class OrdersTest extends TestCase
         $this->assertEquals(OrderFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getAllTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -113,33 +101,21 @@ class OrdersTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function getSubResourcePreauth_should_succeed(){
         $this->assertTrue(is_a($this->payengine->orders("test")->preauth(), Preauth::class));
     }
-    /**
-     * @test
-     */
     public function getSubResourceDebit_should_succeed(){
         $this->assertTrue(is_a($this->payengine->orders("test")->debit(), Debit::class));
     }
 
-    /**
-     * @test
-     */
     public function getSubResourceTransactions_should_succeed()
     {
         $this->assertTrue(is_a($this->payengine->orders("test")->transactions(),Transactions::class));
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
     public function getSubResourceTransactions_should_fail()
     {
+        $this->expectException(\Exception::class);
         $this->payengine->orders()->transactions();
     }
 

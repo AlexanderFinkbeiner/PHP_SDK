@@ -19,15 +19,12 @@ class MerchantConfigurationTest extends TestCase
      */
     private $testedClass;
 
-    public function setup(){
+    public function setup():void {
         $this->testedClass = new MerchantConfiguration();
     }
 
 
-    /**
-     * @test
-     */
-    public function authHeaderTest(){
+    public function testAuthHeaderTest(){
         $this->testedClass->setMerchantId("merchant_123");
         $this->testedClass->setApiKey("test123");
         $this->testedClass->setIsLiveMode(true);

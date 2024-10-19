@@ -9,14 +9,12 @@ use Concardis\Payengine\Lib\Internal\Constants\Products;
 use Concardis\Payengine\Lib\Models\Request\Orders\Async;
 use Concardis\Payengine\Lib\Models\Request\Orders\AuthorizingTransaction;
 use Concardis\Payengine\Lib\Models\Request\Orders\Payment\Payment;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class AuthorizingTransactionTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $expected = array(
             'description' => 'test',
@@ -33,9 +31,6 @@ class AuthorizingTransactionTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $item = array(
             'articleNumber' => 'PE12345',

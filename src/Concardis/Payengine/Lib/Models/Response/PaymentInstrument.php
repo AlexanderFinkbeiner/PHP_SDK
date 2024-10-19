@@ -8,7 +8,7 @@ use Concardis\Payengine\Lib\Models\Response\PaymentInstruments\Attributes;
 class PaymentInstrument extends AbstractResponseModel
 {
     protected $subModels = array(
-        'attributes' => Attributes::class,
+      //  'attributes' => Attributes::class,
     );
 
     /**

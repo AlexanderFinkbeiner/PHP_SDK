@@ -3,8 +3,9 @@
 namespace Concardis\Payengine\Lib\Test\Internal\Util;
 
 use Concardis\Payengine\Lib\Internal\Util\DateTimeHelper;
+use Exception;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use Prophecy\Exception\Exception;
 use Webmozart\Assert\Assert;
 
 require_once __DIR__ . "/../../../../../../../autoload.php";
@@ -13,9 +14,6 @@ require_once __DIR__ . "/../../../../../../../autoload.php";
 class DateTimeHelperTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function isValidTimeStamp_withValidDates_shouldSucceed(){
         $this->assertTrue( DateTimeHelper::isValidTimeStamp(time()) );
         $this->assertTrue( DateTimeHelper::isValidTimeStamp("123") );
@@ -23,9 +21,6 @@ class DateTimeHelperTest extends TestCase
         $this->assertTrue( DateTimeHelper::isValidTimeStamp(123.01) );
     }
 
-    /**
-     * @test
-     */
     public function isValidTimeStamp_withInValidDates_shouldSucceed(){
         $this->assertFalse( DateTimeHelper::isValidTimeStamp("abc") );
         $this->assertFalse( DateTimeHelper::isValidTimeStamp("12a3") );
@@ -33,8 +28,6 @@ class DateTimeHelperTest extends TestCase
 
     /**
      * Test conversion to RFC3339 Format
-     *
-     * @test
      */
     public function convertNumericToDateTime_withValidTimestamp_shouldSucceed(){
         $TestValues = array(
@@ -51,19 +44,16 @@ class DateTimeHelperTest extends TestCase
 
     /**
      * Test conversion to RFC3339 Format
-     *
-     * @test
-     * @expectedException Exception
-     * @expectedExceptionMessage Must be a valid numeric value or DateTime
      */
     public function convertNumericToDateTime_withInValidString_shouldFail(){
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Must be a valid numeric value or DateTime');
+
         DateTimeHelper::convertNumericToDateTime("a23aca1");
     }
 
     /**
      * Test conversion to RFC3339 Format
-     *
-     * @test
      */
     public function convertNumericToDateTime_withValidDateTime_shouldSucceed(){
         $inputValue = new \DateTime("@1364218889");
@@ -74,9 +64,6 @@ class DateTimeHelperTest extends TestCase
         $this->assertEquals($expectedOutput, $dateTime->format(DATE_RFC3339));
     }
 
-    /**
-     * @test
-     */
     public function getMillisecondFromDateTime_withValidDates_shouldSucceed(){
         $this->assertEquals(634478400000, DateTimeHelper::getMillisecondFromDateTime(new \DateTime("@634478400")));
         $this->assertEquals(1364218889000, DateTimeHelper::getMillisecondFromDateTime(new \DateTime("@1364218889")));

@@ -22,7 +22,7 @@ class PreauthTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -39,9 +39,6 @@ class PreauthTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function postTest(){
         $result = $this->payengine->orders()->preauth()->post(array());
         $this->assertEquals(OrderFixture::getResponse(), $result);

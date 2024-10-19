@@ -41,20 +41,16 @@ class ConnectionTest extends TestCase
 
     /**
      * Branch test for construct
-     *
-     * @test
      */
-    public function constructTest(){
+    public function testConstructTest(){
         $this->assertInstanceOf(get_class(new Connection()), new Connection());
         $this->assertInstanceOf(get_class(new Connection()), new Connection(new Curl()));
     }
 
     /**
      * Branch test for isLiveMode check
-     *
-     * @test
      */
-    public function getEndpointTest(){
+    public function testGetEndpointTest(){
         $config = new MerchantConfiguration();
         $config->setIsLiveMode(true);
 
@@ -65,91 +61,64 @@ class ConnectionTest extends TestCase
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     */
-    public function postTest_positive(){
+    public function testPostTest_positive(){
         $this->connection = new Connection($this->getCurlMock(false));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $response = $this->connection->post('test', array());
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     * @expectedException \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
-     */
-    public function postTest_negative(){
+    public function testPostTest_negative(){
+        $this->expectException(\Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException::class);
         $this->connection = new Connection($this->getCurlMock(true));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $this->connection->post('test', array());
     }
 
-    /**
-     * @test
-     */
-    public function patchTest_positive(){
+    public function testPatchTest_positive(){
         $this->connection = new Connection($this->getCurlMock(false));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $response = $this->connection->patch('test', array());
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     * @expectedException \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
-     */
-    public function patchTest_negative(){
+    public function testPatchTest_negative(){
+        $this->expectException(\Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException::class);
         $this->connection = new Connection($this->getCurlMock(true));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $this->connection->patch('test', array());
     }
 
-    /**
-     * @test
-     */
-    public function deleteTest_positive(){
+    public function testDeleteTest_positive(){
         $this->connection = new Connection($this->getCurlMock(false));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $response = $this->connection->delete('test');
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     * @expectedException \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
-     */
-    public function deleteTest_negative(){
+    public function testDeleteTest_negative(){
+        $this->expectException(\Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException::class);
         $this->connection = new Connection($this->getCurlMock(true));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $this->connection->delete('test');
     }
 
-    /**
-     * @test
-     */
-    public function getTest_positive(){
+    public function testGetTest_positive(){
         $this->connection = new Connection($this->getCurlMock(false));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $response = $this->connection->get('test');
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     */
-    public function getQueryStringTest_positive(){
+    public function testGetQueryStringTest_positive(){
         $this->connection = new Connection($this->getCurlMock(false));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $response = $this->connection->get('test', array('filter' => 1, 'orderBy' => 'test'));
         $this->assertArrayHasKey('key', $response);
     }
 
-    /**
-     * @test
-     * @expectedException \Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException
-     */
-    public function getTest_negative(){
+    public function testGetTest_negative(){
+        $this->expectException(\Concardis\Payengine\Lib\Internal\Exception\PayengineResourceException::class);
         $this->connection = new Connection($this->getCurlMock(true));
         $this->connection->setMerchantConfig(new MerchantConfiguration());
         $this->connection->get('test');

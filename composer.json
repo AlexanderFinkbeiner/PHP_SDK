@@ -1,6 +1,5 @@
 {
   "name": "finkbeiner/php_sdk_forked",
-  "type":"Library",
   "description": "PHP Library for Concardis PayEngine 3.0",
   "keywords":["concardis", "payengine", "payment", "provider", "service", "ecommerce"],
   "minimum-stability": "stable",
@@ -17,8 +16,9 @@
     "curl/curl": "1.6.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "5.7.19",
-    "sebastian/version": "1.0.6"
+    "phpcompatibility/php-compatibility": "9.0.0",
+    "phpunit/phpunit": "11.0.4",
+    "sebastian/version": "5.0.0"
   },
   "autoload": {
     "psr-4": {

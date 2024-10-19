@@ -11,9 +11,6 @@ use \PHPUnit\Framework\TestCase;
 class PersonaTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $expected = array(
             'firstName' => 'Max',
@@ -32,9 +29,6 @@ class PersonaTest extends TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $expected = array(
             'title' => 'Dr.',

@@ -4,6 +4,7 @@ namespace Concardis\Payengine\Lib\Models\Request\Orders;
 
 
 use Concardis\Payengine\Lib\Internal\AbstractClass\AbstractModel;
+use Concardis\Payengine\Lib\Models\Request\Orders\Metas\ThreeDsData;
 
 class Meta extends AbstractModel
 {

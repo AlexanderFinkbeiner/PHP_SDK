@@ -20,15 +20,12 @@ class OrderTest extends TestCase
      */
     private $testedClass;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->testedClass = OrderFixture::getResponse();
         parent::setUp();
     }
 
-    /**
-     * @test
-     */
     public function toArrayTest(){
         $modelToArray = $this->testedClass->__toArray();
 
@@ -148,9 +145,6 @@ class OrderTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function toJsonTest(){
         $modelToArray = $this->testedClass->__toArray();
         $modelToJson = $this->testedClass->__toJson();
@@ -158,9 +152,6 @@ class OrderTest extends TestCase
         $this->assertEquals(json_encode($modelToArray), $modelToJson);
     }
 
-    /**
-     * @test
-     */
     public function fromArrayTest(){
         $expectedModel = $this->testedClass;
 
@@ -173,9 +164,6 @@ class OrderTest extends TestCase
         $this->assertEquals($expectedModel, $actualModel);
     }
 
-    /**
-     * @test
-     */
     public function fromJsonTest(){
         $expectedModel = $this->testedClass;
 
@@ -187,9 +175,6 @@ class OrderTest extends TestCase
         $this->assertEquals($expectedModel, $actualModel);
     }
 
-    /**
-     * @test
-     */
     public function CustomerId_Instead_of_CustomerObjectTest(){
         $this->testedClass->setCustomer("SomeFancyCustomerId");
 

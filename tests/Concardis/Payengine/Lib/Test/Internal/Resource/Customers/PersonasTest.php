@@ -22,7 +22,7 @@ class PersonasTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -38,17 +38,11 @@ class PersonasTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function postTest(){
         $result = $this->payengine->customer('test123')->personas()->post(array());
         $this->assertEquals(PersonaFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getOneTest() {
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -63,9 +57,6 @@ class PersonasTest extends TestCase
         $this->assertEquals(PersonaFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getAllTest() {
         $mock = $this->createMock(Connection::class);
         $mock->method('get')

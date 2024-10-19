@@ -21,31 +21,22 @@ class AbstractResourceTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup(): void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function emptyFilterArrayTest_should_fail(){
+    public function testEmptyFilterArrayTest_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->paymentinstruments()->get(array());
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function invalidResourceId_should_fail(){
+    public function testInvalidResourceId_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->paymentinstruments(1);
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
-    public function numericFilterArrayTest_should_fail(){
+    public function testNumericFilterArrayTest_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->paymentinstruments()->get(array('test'));
     }
 

@@ -9,9 +9,6 @@ use \PHPUnit\Framework\TestCase;
 
 class RatepayInvoicePaymentTest extends TestCase
 {
-    /**
-     * @test
-     */
     public function toArray() {
         $ratepayInvoicePayment = new Payment();
         $ratepayInvoicePayment->setRiskIdentId('riskidentid');

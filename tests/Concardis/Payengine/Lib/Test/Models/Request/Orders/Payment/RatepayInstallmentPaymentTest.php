@@ -5,13 +5,11 @@ namespace Concardis\Payengine\Lib\Test\Models\Request\Orders\Payment;
 require_once __DIR__ . "/../../../../../../../../../autoload.php";
 
 use \Concardis\Payengine\Lib\Models\Request\Orders\Payment\Payment;
+use PHPUnit\Framework\Attributes\Test;
 use \PHPUnit\Framework\TestCase;
 
 class RatepayInstallmentPaymentTest extends TestCase
 {
-    /**
-     * @test
-     */
     public function toArray() {
         $ratepayInstallmentPayment = new Payment();
         $ratepayInstallmentPayment->setRiskIdentId('riskidentid');
@@ -42,9 +40,6 @@ class RatepayInstallmentPaymentTest extends TestCase
         $this->assertEquals($expected, $actualSetter);
     }
 
-    /**
-     * @test
-     */
     public function toArrayWithBankData() {
         $ratepayInstallmentPayment = new Payment();
         $ratepayInstallmentPayment->setRiskIdentId('riskidentid');
@@ -84,9 +79,6 @@ class RatepayInstallmentPaymentTest extends TestCase
         $this->assertEquals($expected, $actualSetter);
     }
 
-    /**
-     * @test
-     */
     public function toArrayWithPaymentInstrument() {
         $ratepayInstallmentPayment = new Payment();
         $ratepayInstallmentPayment->setRiskIdentId('riskidentid');

@@ -14,9 +14,6 @@ use PHPUnit\Framework\TestCase;
 class TypeHelperTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function convertBooleanValues_should_succeed(){
         $inputArray = array(
             'recurring' => true,

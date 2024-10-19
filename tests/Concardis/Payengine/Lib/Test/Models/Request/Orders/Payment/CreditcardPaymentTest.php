@@ -9,9 +9,6 @@ use \PHPUnit\Framework\TestCase;
 
 class CreditcardPaymentTest extends TestCase
 {
-    /**
-     * @test
-     */
     public function toArray() {
         $creditcardPayment = new Payment();
         $creditcardPayment->setCardNumber('cardnumber');
@@ -40,9 +37,6 @@ class CreditcardPaymentTest extends TestCase
         $this->assertEquals($expected, $actualSetter);
     }
 
-    /**
-     * @test
-     */
     public function toArrayWithPaymentInstrument() {
         $creditcardPayment = new Payment();
         $creditcardPayment->setPaymentInstrumentId('paymentinstrumentid');

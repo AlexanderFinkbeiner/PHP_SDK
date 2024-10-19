@@ -22,17 +22,12 @@ use \PHPUnit\Framework\TestCase;
  */
 class IntegrationTest extends TestCase
 {
-    /**
-     * @var \Concardis\Payengine\Lib\Internal\Config\MerchantConfiguration
-     */
-    protected $merchantConfig;
 
-    /**
-     * @var \Concardis\Payengine\Lib\PayEngine
-     */
-    protected $payengine;
+    protected  \Concardis\Payengine\Lib\Internal\Config\MerchantConfiguration $merchantConfig;
 
-    public function setUp() {
+    private \Concardis\Payengine\Lib\PayEngine $payengine;
+
+    public function setUp(): void {
         $this->merchantConfig = new MerchantConfiguration();
         $this->merchantConfig->setIsLiveMode(
             IntegrationTestConfig::TEST_CONFIG_LIVE_MODE
@@ -49,16 +44,13 @@ class IntegrationTest extends TestCase
         $this->payengine = new Payengine($this->merchantConfig);
     }
 
-    /**
-     * @test
-     */
-    public function customerResource() {
+
+    public function testCustomerResource() {
         $uniqueId = uniqid('inttest');
         $customerEmail = $uniqueId . '@testemail.io';
         $merchantCustomerId = "customer_" . $uniqueId;
         $customer = CustomerFixture::getRequest($uniqueId);
 
-        /** var \Concardis\Payengine\Lib\Models\Response\Customer */
         $customerPostResponse = $this->payengine->customer()->post($customer);
 
         $this->assertNotNull($customerPostResponse);
@@ -71,7 +63,6 @@ class IntegrationTest extends TestCase
 
         $customerId = $customerPostResponse->getCustomerId();
 
-        /** var \Concardis\Payengine\Lib\Models\Response\Customer */
         $customerGetResponse = $this->payengine->customer($customerId)->get();
 
         $this->assertNotNull($customerGetResponse);
@@ -83,10 +74,7 @@ class IntegrationTest extends TestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function createAsyncAuthTransactionMinimal() {
+    public function testCreateAsyncAuthTransactionMinimal() {
         $authorizingTransaction = AuthorizingTransactionFixture::getRequest();
         $authorizingTransactionResponse = $this->payengine->orders()->preauth()->post($authorizingTransaction);
         $this->assertNotNull($authorizingTransactionResponse);
@@ -94,10 +82,10 @@ class IntegrationTest extends TestCase
     }
 
     /**
-     * @test
+     * 
      * This test refers to github issue #5
      */
-    public function getTransactions() {
+    public function testGetTransactions() {
         $authorizingTransaction = AuthorizingTransactionFixture::getRequest();
         $authorizingTransactionResponse = $this->payengine->orders()->preauth()->post($authorizingTransaction);
 
@@ -126,7 +114,6 @@ class IntegrationTest extends TestCase
         $this->assertNotEmpty($referencingTransactionResponse);
         $this->assertInstanceOf(\Concardis\Payengine\Lib\Models\Response\Order::class, $referencingTransactionResponse->getOrder());
 
-        /* @var $orderFromResponse \Concardis\Payengine\Lib\Models\Response\Order */
         $orderFromResponse = $referencingTransactionResponse->getOrder();
         $this->assertInstanceOf(\Concardis\Payengine\Lib\Models\Response\Order::class, $orderFromResponse);
 

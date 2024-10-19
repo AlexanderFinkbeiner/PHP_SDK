@@ -10,9 +10,6 @@ use \PHPUnit\Framework\TestCase;
 class PaymentInstrumentTest extends TestCase
 {
 
-    /**
-     * @test
-     */
     public function toArray_filterEmptyStrings() {
         $paymentInstrument = new PaymentInstrument();
         $paymentInstrument->setPaymentInstrumentId('');
@@ -22,9 +19,6 @@ class PaymentInstrumentTest extends TestCase
         $this->assertEquals(array(), $actual);
     }
 
-    /**
-     * @test
-     */
     public function toArray() {
         $expected = array(
             'paymentInstrumentId' => '123'

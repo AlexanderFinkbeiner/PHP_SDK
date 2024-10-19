@@ -27,7 +27,7 @@ class CustomersTest extends TestCase
      */
     private $payengine;
 
-    public function setup(){
+    public function setup() : void {
         $this->payengine = new PayEngine(new MerchantConfiguration());
         $this->payengine->setConnection($this->getConnectionMock());
     }
@@ -50,17 +50,11 @@ class CustomersTest extends TestCase
         return $mock;
     }
 
-    /**
-     * @test
-     */
     public function postTest(){
         $result = $this->payengine->customer()->post(array());
         $this->assertEquals(CustomerFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function postCustomerResourceException() {
         $mock = $this->createMock(\Curl\Curl::class);
         $mock->method('post')->will($this->returnValue(null));
@@ -84,17 +78,11 @@ class CustomersTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function patchTest(){
         $result = $this->payengine->customer()->patch(array());
         $this->assertEquals(CustomerFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function patchCustomerResourceException() {
         $mock = $this->createMock(\Curl\Curl::class);
         $mock->method('patch')->will($this->returnValue(null));
@@ -115,9 +103,6 @@ class CustomersTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function getOneTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -133,9 +118,6 @@ class CustomersTest extends TestCase
         $this->assertEquals(CustomerFixture::getResponse(), $result);
     }
 
-    /**
-     * @test
-     */
     public function getAllTest(){
         $mock = $this->createMock(Connection::class);
         $mock->method('get')
@@ -163,9 +145,6 @@ class CustomersTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function getCustomerResourceException() {
         $mock = $this->createMock(\Curl\Curl::class);
         $mock->method('get')->will($this->returnValue(null));
@@ -181,46 +160,29 @@ class CustomersTest extends TestCase
         }
     }
 
-    /**
-     * @test
-     */
     public function getSubResourceAddresses_should_succeed(){
         $this->assertTrue(is_a($this->payengine->customer("test")->addresses(), Addresses::class));
     }
-    /**
-     * @test
-     */
     public function getSubResourcePersonas_should_succeed(){
         $this->assertTrue(is_a($this->payengine->customer("test")->personas(), Personas::class));
     }
 
-    /**
-     * @test
-     */
     public function getSubResourcePaymentInstruments_should_succeed(){
         $this->assertTrue(is_a($this->payengine->customer("test")->paymentInstruments(), CustomerPaymentInstruments::class));
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
     public function getSubResourceAddresses_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->customer()->addresses();
     }
-    /**
-     * @test
-     * @expectedException \Exception
-     */
+
     public function getSubResourcePersonas_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->customer()->personas();
     }
 
-    /**
-     * @test
-     * @expectedException \Exception
-     */
     public function getSubResourcePaymentInstruments_should_fail(){
+        $this->expectException(\Exception::class);
         $this->payengine->customer()->paymentInstruments();
     }
 }
