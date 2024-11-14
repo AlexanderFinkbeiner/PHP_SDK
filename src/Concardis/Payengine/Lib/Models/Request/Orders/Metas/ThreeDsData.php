@@ -9,14 +9,14 @@ class ThreeDsData extends AbstractModel
 {
 
     /**
-     * @var object
+     * @var string
      */
-    private object $threeDsAuthenticationId;
+    private string $threeDsAuthenticationId;
 
     /**
-     * @param object $threeDsAuthenticationId
+     * @param string $threeDsAuthenticationId
      */
-    public function setThreeDsAuthenticationId(object $threeDsAuthenticationId): void
+    public function setThreeDsAuthenticationId($threeDsAuthenticationId): void
     {
         $this->threeDsAuthenticationId = $threeDsAuthenticationId;
     }

@@ -62,13 +62,13 @@ class Meta extends AbstractResponseModel
      * @var string
      * relevant for creditcard payments
      */
-    private string $threeDs;
+    private string $threeDs = "";
 
     /**
      * @var CofContract
      * relevant for creditcard payments
      */
-    private CofContract $cofContract;
+    private array $cofContract = array();
 
     /**
      * @var string
@@ -80,7 +80,7 @@ class Meta extends AbstractResponseModel
      * @var ThreeDsData
      * relevant for creditcard payments
      */
-    private ThreeDsData $threeDsData;
+    private array $threeDsData;
     
     /**
      * @return string
@@ -245,17 +245,17 @@ class Meta extends AbstractResponseModel
     }
 
     /**
-     * @return ThreeDsData
+     * @return array
      */
-    public function getThreeDsData(): ThreeDsData
+    public function getThreeDsData(): array
     {
         return $this->threeDsData;
     }
 
     /**
-     * @param ThreeDsData $threeDsData
+     * @param $threeDsData
      */
-    public function setThreeDsData(ThreeDsData $threeDsData): void
+    public function setThreeDsData(array $threeDsData): void
     {
         $this->threeDsData = $threeDsData;
     }
@@ -269,9 +269,9 @@ class Meta extends AbstractResponseModel
     }
 
     /**
-     * @param CofContract $cofContract
+     * @param array $cofContract
      */
-    public function setCofContract(CofContract $cofContract): void
+    public function setCofContract(array $cofContract): void
     {
         $this->cofContract = $cofContract;
     }

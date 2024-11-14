@@ -69,9 +69,9 @@ class Authentication extends AbstractResponseModel
         return $this->authenticationResult;
     }
     /**
-     * @param object $authenticationResult
+     * @param $authenticationResult
      */
-    public function setAuthenticationResult(object $authenticationResult): void
+    public function setAuthenticationResult($authenticationResult): void
     {
         $this->authenticationResult = $authenticationResult;
     }
