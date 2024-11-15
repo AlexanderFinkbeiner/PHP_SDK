@@ -13,7 +13,7 @@
     }
   ],
   "require": {
-    "curl/curl": "1.6.0"
+    "curl/curl": "2.5.0"
   },
   "require-dev": {
     "phpcompatibility/php-compatibility": "9.0.0",
